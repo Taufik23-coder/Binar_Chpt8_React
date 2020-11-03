@@ -1,0 +1,239 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample server Player server for fullfil Binar Chapter 8 Challange.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io).",
+    "version": "1.0.0",
+    "title": "Swagger Binar Academy Challange Chapter 8",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:5000",
+  "basePath": "/api",
+  "tags": [{
+    "name": "players",
+    "description": "Everything about detail Players"
+  }],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/players": {
+      "get": {
+        "tags": [
+          "players"
+        ],
+        "summary": "Find all players",
+        "description": "Get information about players who play this game",
+        "operationId": "getAllPlayers",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull Operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "items": {
+                "$ref": "#/definitions/Player"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "players"
+        ],
+        "summary": "Add new player to database",
+        "description": "Add new player",
+        "operationId": "addPlayer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "Player object that needs to be added to the store",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Player"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Succesfull create new player"
+          }
+        }
+      }
+    },
+    "/players/{id}": {
+      "get": {
+        "tags": [
+          "players"
+        ],
+        "summary": "Find player by id",
+        "description": "Find a player by Id",
+        "operationId": "getPlayerId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "description": "Player ID",
+          "required": true,
+          "type": "integer"
+        }],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "players"
+        ],
+        "summary": "Edit player",
+        "description": "Edit Player in Game",
+        "operationId": "updatePlayer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "description": "Player ID",
+          "required": true,
+          "type": "integer"
+        }],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "players"
+        ],
+        "summary": "Delete player",
+        "description": "Delete specisif player in the game",
+        "operationId": "deletePlayer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "description": "Player ID",
+          "required": true,
+          "type": "integer"
+        }],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      }
+    },
+    "/players/exp/{id}": {
+      "post": {
+        "tags": [
+          "players"
+        ],
+        "summary": "Add player experience to database",
+        "description": "Add player expereince",
+        "operationId": "addPlayerExp",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "description": "Player ID",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Player object that needs to be added to the store",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Player"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Succesfully create experince player"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Player": {
+      "type": "object",
+      "required": [
+        "username",
+        "password",
+        "email"
+      ],
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "binarplayer"
+        },
+        "email": {
+          "type": "string",
+          "example": "binarplayer@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": 321654
+        },
+        "experience": {
+          "type": "integer",
+          "example": 1523
+        },
+        "lvl": {
+          "type": "integer",
+          "example": 72
+        }
+      },
+      "xml": {
+        "name": "Player"
+      }
+    }
+  }
+}
