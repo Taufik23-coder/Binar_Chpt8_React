@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Cards from '../components/HomeCards';
 import HomeTable from '../components/HomeTable';
 
-
-
 import axios from 'axios';
-
 
 
 const Home = () => {

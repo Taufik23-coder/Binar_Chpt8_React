@@ -12,7 +12,6 @@ const App = () => {
     <>
       <Router>
         <Navbar />
-
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/search' component={Search} />
